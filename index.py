@@ -1,6 +1,6 @@
 import re
 import sys
-from keyword import keywords
+from keywords import keywords
 from separator import separators
 
 
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     ]
 
     lx = Lexer(rules, skip_whitespace=True)
-    lx.input('const e = _abc + 12*(R4-623902)  abstract')
+    lx.input('val e = _abc + 12*(R4-623902) constructor  abstract')
 
     try:
         for tok in lx.tokens():
