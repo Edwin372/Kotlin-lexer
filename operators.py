@@ -1,5 +1,5 @@
 mathematical_operator = (
-    '[+]|-|*|/|%', 'MATHEMATICAL_OPERATOR')
+    '[+]|-|[*]|/|%', 'MATHEMATICAL_OPERATOR')
 
 comparison_operator = (
     '>|<|>=|<=|==|!=|===|!==', 'COMPARISON_OPERATOR')
@@ -17,5 +17,5 @@ index_access_operator = (
     '[|,|]', 'INDEX_ACCESS_OPERATOR')
 
 unary_operator = (
-    '!!|?[.]|?:|::|[.][.]|:|?|->|@|;|[$]|_', 'UNARY_OPERATOR')
+    '!!|[?][.]|[?]:|::|[.][.]|:|[?]|->|@|;|[$]|_', 'UNARY_OPERATOR')
 

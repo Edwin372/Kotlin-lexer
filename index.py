@@ -85,8 +85,7 @@ if __name__ == '__main__':
         increment_operator,
         logical_operator,
         index_access_operator,
-        unary_operator,
-
+        unary_operator
     ]
 
     lx = Lexer(rules, skip_whitespace=True)
