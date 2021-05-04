@@ -1,0 +1,3 @@
+stringLiteral = (
+    """(\\"|[^"])+""", 'STRING_LITERAL'
+)

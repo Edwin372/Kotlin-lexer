@@ -1,7 +1,10 @@
 import re
 import sys
-from keywords import keywords
-from separator import separators
+from keyword_token import keywords
+from separator_token import separators
+from number_token import numberLiteral
+from string_token import stringLiteral
+from type_token import types
 
 
 class Token(object):
@@ -12,7 +15,7 @@ class Token(object):
         self.pos = pos
 
     def __str__(self):
-        return '%s(%s) at %s' % (self.type, self.val, self.pos)
+        return '[%s, %s, %s]' % (self.type, self.val, self.pos)
 
 
 class LexerError(Exception):
@@ -28,7 +31,6 @@ class Lexer(object):
         idx = 1
         regex_parts = []
         self.group_type = {}
-
         for regex, type in rules:
             groupname = 'GROUP%s' % idx
             regex_parts.append('(?P<%s>%s)' % (groupname, regex))
@@ -39,24 +41,23 @@ class Lexer(object):
         self.skip_whitespace = skip_whitespace
         self.re_ws_skip = re.compile('\S')
 
-    def input(self, buf):
-        self.buf = buf
+    def input(self, str):
+        self.str = str
         self.pos = 0
 
     def token(self):
 
-        if self.pos >= len(self.buf):
+        if self.pos >= len(self.str):
             return None
         else:
             if self.skip_whitespace:
-                m = self.re_ws_skip.search(self.buf, self.pos)
+                m = self.re_ws_skip.search(self.str, self.pos)
 
                 if m:
                     self.pos = m.start()
                 else:
                     return None
-
-            m = self.regex.match(self.buf, self.pos)
+            m = self.regex.match(self.str, self.pos)
             if m:
                 groupname = m.lastgroup
                 tok_type = self.group_type[groupname]
@@ -77,7 +78,10 @@ class Lexer(object):
 if __name__ == '__main__':
     rules = [
         keywords,
-        ('\d+',             'NUMBER'),
+        numberLiteral,
+        # stringLiteral,
+        separators,
+        types,
         ('[a-zA-Z_]\w*',    'IDENTIFIER'),
         ('\+',              'PLUS'),
         ('\-',              'MINUS'),
@@ -89,7 +93,8 @@ if __name__ == '__main__':
     ]
 
     lx = Lexer(rules, skip_whitespace=True)
-    lx.input('val e = _abc + 12*(R4-623902) constructor  abstract')
+    lx.input(
+        'class Array private constructor() { val size: Int operator fun get(index: Int in in ): T  operator fun set(index: Int, value: T): Unit   operator fun iterator(): Iterator }')
 
     try:
         for tok in lx.tokens():
