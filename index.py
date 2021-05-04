@@ -1,6 +1,7 @@
 import re
 import sys
-from rules import keywords
+from keyword import keywords
+from separator import separators
 
 
 class Token(object):
