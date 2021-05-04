@@ -1,19 +1,21 @@
-operators = ['+', '-', '*', '/', '%', '**', '//',
-            '=', '+=', '-=', '*=', '/=', '%=', '//=', '**=', '&=', '|=', '^=', '>>=', '<<='
-            '==', '!=', '>', '<', '>=', '<=',
-            'and', 'or', 'not',
-            'is', 'is not',
-            'in', 'not in',
-            '&', '|', '^', '~', '<<', '>>']
+mathematical_operator = (
+    '[+]|-|*|/|%', 'MATHEMATICAL_OPERATOR')
 
-relation_operator = (
-    '>|<|>=|<=|==|!=|', 'RELATION_OPERATOR'
-)
+comparison_operator = (
+    '>|<|>=|<=|==|!=|===|!==', 'COMPARISON_OPERATOR')
 
 assignment_operator = (
-    '+=|-=|*=|/=|%=', 'ASSIGNMENT_OPERATOR'
-)
+    '=|[+]=|-=|[*]=|/=|%=', 'ASSIGNMENT_OPERATOR')
+
+increment_operator = (
+    '[+][+]|--', 'INCREMENT_OPERATOR')
 
 logical_operator = (
-    '&&|\|\||!', 'LOGICAL_OPERATOR'
-)
+    '&&|[|][|]|!', 'LOGICAL_OPERATOR')
+
+index_access_operator = (
+    '[|,|]', 'INDEX_ACCESS_OPERATOR')
+
+unary_operator = (
+    '!!|?[.]|?:|::|[.][.]|:|?|->|@|;|[$]|_', 'UNARY_OPERATOR')
+

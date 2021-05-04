@@ -1,6 +1,7 @@
 import re
 import sys
 from keywords import keywords
+from operators import *
 from separator import separators
 
 
@@ -76,16 +77,16 @@ class Lexer(object):
 
 if __name__ == '__main__':
     rules = [
-        keywords,
         ('\d+',             'NUMBER'),
         ('[a-zA-Z_]\w*',    'IDENTIFIER'),
-        ('\+',              'PLUS'),
-        ('\-',              'MINUS'),
-        ('\*',              'MULTIPLY'),
-        ('\/',              'DIVIDE'),
-        ('\(',              'LP'),
-        ('\)',              'RP'),
-        ('=',               'EQUALS'),
+        mathematical_operator,
+        comparison_operator,
+        assignment_operator,
+        increment_operator,
+        logical_operator,
+        index_access_operator,
+        unary_operator,
+
     ]
 
     lx = Lexer(rules, skip_whitespace=True)
