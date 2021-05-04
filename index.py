@@ -1,10 +1,16 @@
 import re
 import sys
+<<<<<<< HEAD
 from keyword_token import keywords
 from separator_token import separators
 from number_token import numberLiteral
 from string_token import stringLiteral
 from type_token import types
+=======
+from keywords import keywords
+from operators import *
+from separator import separators
+>>>>>>> 1eb0520899af2ea3055253a511082d3a62fd9f4f
 
 
 class Token(object):
@@ -77,19 +83,23 @@ class Lexer(object):
 
 if __name__ == '__main__':
     rules = [
+<<<<<<< HEAD
         keywords,
         numberLiteral,
         # stringLiteral,
         separators,
         types,
+=======
+        ('\d+',             'NUMBER'),
+>>>>>>> 1eb0520899af2ea3055253a511082d3a62fd9f4f
         ('[a-zA-Z_]\w*',    'IDENTIFIER'),
-        ('\+',              'PLUS'),
-        ('\-',              'MINUS'),
-        ('\*',              'MULTIPLY'),
-        ('\/',              'DIVIDE'),
-        ('\(',              'LP'),
-        ('\)',              'RP'),
-        ('=',               'EQUALS'),
+        mathematical_operator,
+        comparison_operator,
+        assignment_operator,
+        increment_operator,
+        logical_operator,
+        index_access_operator,
+        unary_operator
     ]
 
     lx = Lexer(rules, skip_whitespace=True)
